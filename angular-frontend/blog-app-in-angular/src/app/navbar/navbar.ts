@@ -1,17 +1,20 @@
-import { Component } from '@angular/core';
+import { Component, EventEmitter, Output } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import { PostCard } from '../post-card/post-card';
+import { Router } from '@angular/router';
+import { FormsModule } from '@angular/forms';
 
 @Component({
   selector: 'app-navbar',
   standalone:true,
-  imports: [],
+  imports: [FormsModule],
   templateUrl: './navbar.html',
   styleUrl: './navbar.scss'
 })
 export class Navbar {
-
-  constructor(private dialog: MatDialog) {}
+ searchTerm:string= '';
+   @Output() search = new EventEmitter<string>();
+  constructor(private dialog: MatDialog,private router: Router) {}
 
 openBlogFormModal() {
   this.dialog.open(PostCard, {
@@ -21,6 +24,20 @@ openBlogFormModal() {
 
 }
 handleSearch(){
-  console.log("clicked");
+  console.log("clicked"+" and search term is "+this.searchTerm);
+   this.router.navigate(['/search-results'], {
+    queryParams: { query: this.searchTerm }
+  });
 }
+ triggerSearch() {
+    const query = this.searchTerm.trim();
+    if (query) {
+      this.router.navigate(['/search-results'], {
+        queryParams: { query }
+      });
+    }
+  }
+  onSearchChange() {
+    this.search.emit(this.searchTerm);
+  }
 }

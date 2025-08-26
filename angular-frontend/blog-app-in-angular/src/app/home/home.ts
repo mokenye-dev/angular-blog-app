@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { BlogCard } from '../blog-card/blog-card';
 import { MatPaginatorModule, PageEvent } from '@angular/material/paginator';
 import { Navbar } from "../navbar/navbar";
+import { Api } from '../services/api';
 
 @Component({
   selector: 'app-home',
@@ -18,7 +19,7 @@ export class Home {
   totalPages = 0;
   totalBlogs = 0;
   currentPage = 0;
-
+constructor(public apiService: Api) {}
   ngOnInit() {
    // this.blogs = this.fetchBlogs(); // however you're loading them
     this.totalBlogs = this.blogs.length;

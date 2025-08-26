@@ -10,6 +10,6 @@ export const routes: Routes = [
     {path:'posts/:slug',component:Post},
     {path:'navbar',component:Navbar},
     {path:'create-post',component:PostCard},
-    {path:'search-post',component:SearchPage},
+    {path:'search-results',component:SearchPage},
     
 ];

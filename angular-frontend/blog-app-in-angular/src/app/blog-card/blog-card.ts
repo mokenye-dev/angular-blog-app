@@ -11,10 +11,11 @@ import { Component, Input } from '@angular/core';
 export class BlogCard {
 // blog-card.component.ts
 @Input() blog!: {
+  id:number
   title: string;
   date: string;
   imageUrl: string;
-  summary: string;
+  content:string
 };
 
 }

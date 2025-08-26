@@ -29,11 +29,13 @@ imageError: string | null = null;
     const formValue = this.blogForm.value;
 
     const blogData: BlogPost = {
+      id:0,
       title: formValue.title,
       date: formValue.date,
       slug: formValue.slug,
       image: formValue.image instanceof FileList ? formValue.image[0] : null,
-      content: formValue.content
+      content: formValue.content,
+      imageUrl:''
     };
     console.log("reed");
     this.apiService.createBlog(blogData).subscribe({

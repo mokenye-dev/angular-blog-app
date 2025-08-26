@@ -14,7 +14,7 @@
     <app-blog-card *ngFor="let blog of pagedBlogs" [blog]="blog"></app-blog-card>
     -->
           
-        @for (blog of pagedBlogs; track blog.id) {
+        @for (blog of apiService.blogs(); track blog.id) {
             <app-blog-card [blog]="blog" />
         }
        

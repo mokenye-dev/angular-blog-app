@@ -12,43 +12,24 @@
   <h1 class="text-3xl font-bold text-center mb-2">Search Blogs</h1>
 
   <!-- Subtitle -->
-  <p class="text-center text-sm text-gray-500 mb-8">Showing 12 results for "<span class="font-medium text-gray-700">Accessibility</span>"</p>
+  <p class="text-center text-sm text-gray-500 mb-8">Showing {{results.length}} results for "<span class="font-medium text-gray-700">{{query}}</span>"</p>
 
   <!-- Blog Cards Grid -->
   <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
     <!-- Blog Card -->
-    <div class="bg-white border border-gray-200 rounded-lg shadow-sm p-4">
-      <img src="https://via.placeholder.com/400x200" alt="Blog Image" class="w-full h-40 object-cover rounded-md mb-3" />
-      <p class="text-xs text-gray-500 mb-2">August 24, 2025</p>
-      <h2 class="text-lg font-semibold text-gray-800 mb-1">Understanding Accessibility in Web Design</h2>
-      <p class="text-sm text-gray-600 line-clamp-3">
-        Accessibility ensures that digital content is usable by everyone, including people with disabilities. It involves semantic HTML, keyboard navigation, and thoughtful design decisions...
-      </p>
-    </div>
-       <div class="bg-white border border-gray-200 rounded-lg shadow-sm p-4">
-      <img src="https://via.placeholder.com/400x200" alt="Blog Image" class="w-full h-40 object-cover rounded-md mb-3" />
-      <p class="text-xs text-gray-500 mb-2">August 24, 2025</p>
-      <h2 class="text-lg font-semibold text-gray-800 mb-1">Understanding Accessibility in Web Design</h2>
-      <p class="text-sm text-gray-600 line-clamp-3">
-        Accessibility ensures that digital content is usable by everyone, including people with disabilities. It involves semantic HTML, keyboard navigation, and thoughtful design decisions...
-      </p>
-    </div>
-       <div class="bg-white border border-gray-200 rounded-lg shadow-sm p-4">
-      <img src="https://via.placeholder.com/400x200" alt="Blog Image" class="w-full h-40 object-cover rounded-md mb-3" />
-      <p class="text-xs text-gray-500 mb-2">August 24, 2025</p>
-      <h2 class="text-lg font-semibold text-gray-800 mb-1">Understanding Accessibility in Web Design</h2>
-      <p class="text-sm text-gray-600 line-clamp-3">
-        Accessibility ensures that digital content is usable by everyone, including people with disabilities. It involves semantic HTML, keyboard navigation, and thoughtful design decisions...
-      </p>
-    </div>
-       <div class="bg-white border border-gray-200 rounded-lg shadow-sm p-4">
-      <img src="https://via.placeholder.com/400x200" alt="Blog Image" class="w-full h-40 object-cover rounded-md mb-3" />
-      <p class="text-xs text-gray-500 mb-2">August 24, 2025</p>
-      <h2 class="text-lg font-semibold text-gray-800 mb-1">Understanding Accessibility in Web Design</h2>
-      <p class="text-sm text-gray-600 line-clamp-3">
-        Accessibility ensures that digital content is usable by everyone, including people with disabilities. It involves semantic HTML, keyboard navigation, and thoughtful design decisions...
-      </p>
-    </div>
+     @for (blogpost of results; track $index) {
+        <div class="bg-white border border-gray-200 rounded-lg shadow-sm p-4">
+            <img src="https://via.placeholder.com/400x200" alt="Blog Image" class="w-full h-40 object-cover rounded-md mb-3" />
+            <p class="text-xs text-gray-500 mb-2">{{blogpost.date}}</p>
+            <h2 class="text-lg font-semibold text-gray-800 mb-1">{{blogpost.title}}</h2>
+            <p class="text-sm text-gray-600 line-clamp-3">
+              {{blogpost.title}}
+            </p>
+          </div>
+     }
+  
+
+
   </div>
   
 </div>
