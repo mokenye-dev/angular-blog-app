@@ -1,10 +1,11 @@
 import { Component } from '@angular/core';
 import { Api, BlogPost } from '../services/api';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, RouterLink } from '@angular/router';
+import { Navbar } from "../navbar/navbar";
 
 @Component({
   selector: 'app-search-page',
-  imports: [],
+  imports: [Navbar,RouterLink],
   templateUrl: './search-page.html',
   styleUrl: './search-page.scss'
 })

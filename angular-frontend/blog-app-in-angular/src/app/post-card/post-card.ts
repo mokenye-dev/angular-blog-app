@@ -2,6 +2,7 @@
 import { Component } from '@angular/core';
 import { BlogPost,Api } from '../services/api';
 import { FormBuilder, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
+import { MatDialogRef } from '@angular/material/dialog';
 @Component({
   selector: 'app-post-card',
   standalone:true,
@@ -13,7 +14,7 @@ export class PostCard {
   imagePreview: string | null = null;
 imageError: string | null = null;
    blogForm: FormGroup;
-  constructor(private fb:FormBuilder,private apiService:Api){
+  constructor(private fb:FormBuilder,private apiService:Api,private dialogRef: MatDialogRef<PostCard>,){
        this.blogForm = this.fb.group({
       title: ['', [Validators.required, Validators.maxLength(100)]],
       date: ['', Validators.required],
@@ -24,7 +25,7 @@ imageError: string | null = null;
   }
 
   saveBlogPost(){
-    console.log("Yes button is clicked");
+
     //  if (this.blogForm.valid) {
     const formValue = this.blogForm.value;
 
@@ -38,20 +39,19 @@ imageError: string | null = null;
       imageUrl:''
     };
     console.log("reed");
+    console.log(blogData);
     this.apiService.createBlog(blogData).subscribe({
       next: () => {
         console.log('Blog post created successfully');
-       // this.dialogRef.close();
+       //TODO implement a toast to show the post was successfully saved
+        this.dialogRef.close();
       },
       error: (err) => {
         console.error('Error creating blog post:', err);
+         this.dialogRef.close();
       }
     });
-/*  } else {
-    this.blogForm.markAllAsTouched();
-    console.log("form not complete")
-  }
-    */
+
   }
     onFileChange(event: Event) {
         const input = event.target as HTMLInputElement;

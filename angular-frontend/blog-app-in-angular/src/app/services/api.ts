@@ -3,7 +3,7 @@ import { Injectable, signal } from '@angular/core';
 import { Observable } from 'rxjs';
 
 export interface BlogPost {
-id: any;
+id: number;
   title: string;
   date: string;
   slug: string;
@@ -16,6 +16,9 @@ id: any;
   providedIn: 'root'
 })
 export class Api {
+
+
+
       private apiUrl = 'http://localhost:8080/posts/create'; 
        private blogsSignal = signal<BlogPost[]>([]);
   private loadingSignal = signal<boolean>(false);
@@ -26,8 +29,7 @@ export class Api {
 
   createBlog(blog: BlogPost): Observable<any> {
     const formData = new FormData();
-  //  formData.append('title', blog.title);
-  formData.append('title', "yes");
+   formData.append('title', blog.title);
     formData.append('date', blog.date);
     formData.append('slug', blog.slug);
     formData.append('content', blog.content);
@@ -39,9 +41,10 @@ export class Api {
   }
     get blogs() {
        // Lazy fetch: trigger only when first accessed
-    if (!this.hasFetched) {
+  /*  if (!this.hasFetched) {
       this.fetchBlogs();
     }
+    */
    // return this.productsSignal;
     return this.blogsSignal;
   }
@@ -69,5 +72,14 @@ export class Api {
       }
     });
   }
+    ensureBlogsFetched() {
+    if (!this.hasFetched) {
+      this.fetchBlogs();
+    }
+  }
+  
+  fetchPostBySlug(slug: string): BlogPost | undefined {
+  return this.blogsSignal().find(post => post.slug === slug);
+}
   
 }

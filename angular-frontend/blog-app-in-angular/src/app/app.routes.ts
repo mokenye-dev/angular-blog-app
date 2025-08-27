@@ -7,7 +7,7 @@ import { SearchPage } from './search-page/search-page';
 
 export const routes: Routes = [
     {path:'',component:Home},
-    {path:'posts/:slug',component:Post},
+    {path:'post/:slug',component:Post},
     {path:'navbar',component:Navbar},
     {path:'create-post',component:PostCard},
     {path:'search-results',component:SearchPage},

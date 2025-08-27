@@ -3,16 +3,18 @@ import { MatDialog } from '@angular/material/dialog';
 import { PostCard } from '../post-card/post-card';
 import { Router } from '@angular/router';
 import { FormsModule } from '@angular/forms';
+import { NgClass } from '@angular/common';
 
 @Component({
   selector: 'app-navbar',
   standalone:true,
-  imports: [FormsModule],
+  imports: [FormsModule,NgClass],
   templateUrl: './navbar.html',
   styleUrl: './navbar.scss'
 })
 export class Navbar {
  searchTerm:string= '';
+ isMobileMenuOpen = false;
    @Output() search = new EventEmitter<string>();
   constructor(private dialog: MatDialog,private router: Router) {}
 
@@ -40,4 +42,8 @@ handleSearch(){
   onSearchChange() {
     this.search.emit(this.searchTerm);
   }
+  toggleMenu(){
+    this.isMobileMenuOpen = !this.isMobileMenuOpen;
+  }
+
 }

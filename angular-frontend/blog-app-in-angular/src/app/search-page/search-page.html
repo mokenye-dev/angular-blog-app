@@ -1,7 +1,8 @@
+<app-navbar></app-navbar>
 <div class="max-w-7xl mx-auto px-4 py-8">
 
   <!-- Back Link -->
-  <a href="/blogs" class="flex items-center text-sm text-gray-600 hover:text-gray-800 mb-6">
+  <a href="/" class="flex items-center text-sm text-gray-600 hover:text-gray-800 mb-6">
     <svg class="w-4 h-4 mr-2" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
       <path stroke-linecap="round" stroke-linejoin="round" d="M15 19l-7-7 7-7" />
     </svg>
@@ -18,14 +19,19 @@
   <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
     <!-- Blog Card -->
      @for (blogpost of results; track $index) {
+        <a
+  [routerLink]="['/post', blogpost.slug]"
+  class="block hover:shadow-md transition-shadow duration-200">
+
         <div class="bg-white border border-gray-200 rounded-lg shadow-sm p-4">
-            <img src="https://via.placeholder.com/400x200" alt="Blog Image" class="w-full h-40 object-cover rounded-md mb-3" />
+            <img src="https://images.unsplash.com/photo-1755868384622-b3d5e697be62?w=600&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxmZWF0dXJlZC1waG90b3MtZmVlZHwyN3x8fGVufDB8fHx8fA%3D%3D" alt="Blog Image" class="w-full h-40 object-cover rounded-md mb-3" />
             <p class="text-xs text-gray-500 mb-2">{{blogpost.date}}</p>
             <h2 class="text-lg font-semibold text-gray-800 mb-1">{{blogpost.title}}</h2>
             <p class="text-sm text-gray-600 line-clamp-3">
               {{blogpost.title}}
             </p>
           </div>
+          </a>
      }
   
 

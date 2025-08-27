@@ -2,24 +2,28 @@
   <div class="flex items-center justify-between">
     <!-- Logo -->
     <div class="flex items-center space-x-2">
+      <!--
       <img src="/logo.svg" alt="Logo" class="h-8 w-auto" />
+      -->
+      
       <span class="text-xl font-semibold text-gray-800">MyApp</span>
     </div>
 
     <!-- Mobile menu button -->
-    <button class="md:hidden text-gray-600 focus:outline-none" onclick="toggleMenu()">
+    <button class="md:hidden text-gray-600 focus:outline-none" (click)="toggleMenu()">
       <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
           d="M4 6h16M4 12h16M4 18h16" />
       </svg>
     </button>
+ 
+
 
     <!-- Desktop menu -->
     <div class="hidden md:flex items-center space-x-6">
       <!-- Blog Link -->
-      <a href="/blog" class="text-gray-700 hover:text-blue-600 font-medium">Blog</a>
+      <a href="/" class="text-gray-700 hover:text-blue-600 font-medium">Blog</a>
 
-      <!-- Search bar with icon -->
     <!-- Search bar with icon on the right -->
         <div class="relative space-x-2" >
         <input
@@ -30,16 +34,7 @@
             (keyup.enter)="triggerSearch()"
             [ngModelOptions]="{ standalone: true }"
             class="pr-10 pl-4 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
-        />
-        <!--
-             <div class="absolute inset-y-0 right-0 flex items-center pr-3 pointer-events-none" >
-            <svg  class="w-5 h-5 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                d="M21 21l-4.35-4.35M16 10a6 6 0 11-12 0 6 6 0 0112 0z" />
-            </svg>
-        </div>
-        -->
-   
+        />   
           <button
         class="px-4 py-2 bg-blue-600 text-white rounded-md hover:bg-blue-700 transition"
         (click)="handleSearch()"
@@ -60,8 +55,8 @@
   </div>
 
   <!-- Mobile menu -->
-  <div id="mobileMenu" class="md:hidden hidden mt-4 space-y-4">
-    <a href="/blog" class="block text-gray-700 hover:text-blue-600 font-medium">Blog</a>
+  <div id="mobileMenu" class="md:hidden hidden mt-4 space-y-4" [ngClass]="{ 'hidden': !isMobileMenuOpen, 'block': isMobileMenuOpen }">
+    <a href="/" class="block text-gray-700 hover:text-blue-600 font-medium">Blog</a>
     <div class="flex space-x-2">
       <div class="relative flex-1">
         <input
@@ -77,6 +72,12 @@
           </svg>
         </div>
       </div>
+              <button
+        class="px-4 py-2 bg-blue-600 text-white rounded-md hover:bg-blue-700 transition"
+        (click)="handleSearch()"
+      >
+         Search
+      </button>
       <button
         class="px-4 py-2 bg-blue-600 text-white rounded-md hover:bg-blue-700 transition"
         (click)="openBlogFormModal()"
@@ -87,47 +88,4 @@
   </div>
 </nav>
 
-<!--Blog content-->
-<div class="max-w-3xl mx-auto px-4 py-8">
-  <!-- Back Link -->
-  <a href="/blogs" class="flex items-center text-sm text-gray-600 hover:text-gray-800 mb-6">
-    <svg class="w-4 h-4 mr-2" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
-      <path stroke-linecap="round" stroke-linejoin="round" d="M15 19l-7-7 7-7" />
-    </svg>
-    Back to blog posts
-  </a>
 
-  <!-- Title -->
-  <h1 class="text-3xl font-bold text-center mb-2">Your Blog Title Here</h1>
-
-  <!-- Date and Read Time -->
-  <p class="text-center text-sm text-gray-500 mb-6">August 24, 2025 · 5 min read</p>
-
-  <!-- Image -->
-  <div class="w-full max-w-[1168px] mx-auto aspect-[3.19] overflow-hidden rounded-lg mb-8">
-  <img
-    src="https://via.placeholder.com/1168x366"
-    alt="Blog Image"
-    class="w-full h-full object-cover"
-  />
-</div>
-
-
-  <!-- Content -->
-  <div class="prose prose-lg max-w-none">
-    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed non risus. Suspendisse lectus tortor...</p>
-    <p>More content here. You can use <strong>Tailwind Typography plugin</strong> for rich formatting.</p>
-  </div>
-
-
-</div>
-
-
-
-
-<script>
-  function toggleMenu() {
-    const menu = document.getElementById('mobileMenu');
-    menu.classList.toggle('hidden');
-  }
-</script>
