@@ -10,10 +10,13 @@ This project is a full-stack web application built with:
 ---
 
 ## 📦 Project Structure
-angular-blog-app/ 
-    ├── go-backend/ # Go server 
-      │ └── main.go 
-    ├── frontend/ # Angular app │ └── src/ ├── README.md ├── .gitignore
+angular-blog-app/
+├── go-backend/       # Go server
+│   └── main.go
+├── angular-frontend/      # Angular app
+│   └── src/
+├── README.md
+├── .gitignore
 
 
     
